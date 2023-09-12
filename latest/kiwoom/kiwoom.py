@@ -83,7 +83,7 @@ class Kiwoom(QAxWidget):
             fids = self.realType.REALTYPE['주식체결']['체결시간']
             self.dynamicCall("SetRealReg(QString, QString, QString, QString)", screen_num, code, fids, "1")
 
-        self.myMsg.send_msg(msg="주식 자동화 프로그램 동작")
+        # self.myMsg.send_msg(msg="주식 자동화 프로그램 동작")
 
     def get_ocx_instance(self):
         self.setControl("KHOPENAPI.KHOpenAPICtrl.1") # 레지스트리에 저장된 API 모듈 불러오기
@@ -110,11 +110,13 @@ class Kiwoom(QAxWidget):
 
     def get_account_info(self):
         account_list = self.dynamicCall("GetLoginInfo(QString)", "ACCNO") # 계좌번호 반환
-        account_num = account_list.split(';')[0] # a;b;c  [a, b, c]
+        account_num = account_list.split(';')[0] # a;b;c => [a, b, c]
 
         self.account_num = account_num
 
         self.logging.logger.debug("계좌번호 : %s" % account_num)
+
+        print("==>", "계좌번호 : %s" % account_num)  # 이렇게 해도 동작한다.
 
     def detail_account_info(self, sPrevNext="0"):
         self.dynamicCall("SetInputValue(QString, QString)", "계좌번호", self.account_num)

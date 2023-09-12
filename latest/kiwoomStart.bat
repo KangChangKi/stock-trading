@@ -1,9 +1,9 @@
 @ECHO ON
 title Kiwoom Start
 
-cd C:\Users\USER\PycharmProjects\week1
+cd Z:\project-stock-trading\stock-trading\latest
+call activate py310_32
 
-call activate py37_32
 python __init__.py
 
 cmd.exe
